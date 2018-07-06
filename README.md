@@ -52,6 +52,8 @@ Usage
 
 Features
 ---
+- **Light-weight**: ![](http://img.badgesize.io/yfxie/include-html/master/include-html.min.js.svg)
+![](http://img.badgesize.io/yfxie/include-html/master/include-html.min.js.svg?compression=gzip)
 - support nested include.
 - when all templates loaded, `include-html-loaded` class will be added to `<html>`.
 
@@ -67,7 +69,6 @@ Todo
 - [ ] demo page
 - [ ] more detail description
 - [ ] JS event: loaded
-- [ ] license
 - [ ] can pass variables
 - [ ] version control
 - [ ] write test
