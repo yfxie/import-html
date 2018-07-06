@@ -9,9 +9,15 @@ var IncludeHTML = function () {
   
     self.prevPromise = prevPromise;
     self.fn = fn;
+    self.resolved = false;
+    self.result = undefined;
   
     self.then = function(fn) {
       self.next = new MyPromise(fn, self);
+      
+      if (self.resolved) {
+        self.next._run(self.result);
+      }
       return self.next;
     }
   
@@ -25,13 +31,15 @@ var IncludeHTML = function () {
     }
   
     self._resolve = function(result) {
+      self.resolved = true;
+      self.result = result;
       if (self.next) {
         self.next._run(result);
       }
     }
   
     if (!self.prevPromise) {
-      self._run(self._resolve);
+      self.fn(self._resolve);
     }
   }
 
