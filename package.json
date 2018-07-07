@@ -1,6 +1,6 @@
 {
   "name": "include-html",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "using include feature in HTML",
   "main": "include-html.js",
   "scripts": {
