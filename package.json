@@ -4,7 +4,9 @@
   "description": "using include feature in HTML",
   "main": "include-html.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "uglifyjs --compress --mangle -o include-html.min.js -- include-html.js",
+    "release": "bash scripts/release.sh"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,7 @@
     "babel-jest": "^23.2.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
-    "jest": "^23.3.0"
+    "jest": "^23.3.0",
+    "uglify-js": "^3.4.3"
   }
 }
