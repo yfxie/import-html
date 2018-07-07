@@ -1,6 +1,6 @@
-'use strict';
-
 var IncludeHTML = function () {
+  'use strict';
+
   var SYNTAX_REGX = /include(\s+([^\s]+))+/;
   var ROOT_ELEMENT = document.documentElement;
 
@@ -126,13 +126,17 @@ var IncludeHTML = function () {
     });
 
     if (promises.length) {
-      MyPromise.all(promises).then(klass.load);
+      return MyPromise.all(promises).then(klass.load);
     } else {
       document.documentElement.classList.add('include-html-loaded');
     }
   }
+  
+  document.addEventListener('DOMContentLoaded', klass.load);
 
   return klass;
 }();
 
-document.addEventListener('DOMContentLoaded', IncludeHTML.load);
+if(typeof module !== 'undefined') {
+	module.exports = IncludeHTML;
+}
