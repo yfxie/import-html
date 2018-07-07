@@ -1,6 +1,9 @@
 include-html.js
 ===
 
+![](https://circleci.com/gh/yfxie/include-html.svg?style=svg)
+![](http://img.badgesize.io/yfxie/include-html/master/include-html.min.js.svg?compression=gzip)
+
 for frontend beginners who didn't know framework to use the include feature in HTML.
 
 Usage
