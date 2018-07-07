@@ -1,0 +1,24 @@
+{
+  "name": "include-html",
+  "version": "1.0.0",
+  "description": "using include feature in HTML",
+  "main": "include-html.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yfxie/include-html.git"
+  },
+  "author": "YI FENG XIE",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yfxie/include-html/issues"
+  },
+  "homepage": "https://github.com/yfxie/include-html#readme",
+  "devDependencies": {
+    "babel-jest": "^23.2.0",
+    "babel-polyfill": "^6.26.0",
+    "jest": "^23.3.0"
+  }
+}
