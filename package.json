@@ -19,6 +19,7 @@
   "devDependencies": {
     "babel-jest": "^23.2.0",
     "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "jest": "^23.3.0"
   }
 }
