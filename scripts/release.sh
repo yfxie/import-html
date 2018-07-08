@@ -16,6 +16,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   npm run test
 
   VERSION=$VERSION npm run build
+  npm run add-comment
 
   # commit
   git add -A
