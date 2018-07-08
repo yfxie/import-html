@@ -2,6 +2,7 @@ import-html.js
 ===
 
 ![](https://circleci.com/gh/yfxie/import-html.svg?style=svg)
+[![npm version](https://badge.fury.io/js/import-html.js.svg)](https://badge.fury.io/js/import-html.js)
 ![](http://img.badgesize.io/yfxie/import-html/master/import-html.min.js.svg?compression=gzip)
 
 for frontend beginners who didn't know framework to use the import feature in HTML.
