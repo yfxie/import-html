@@ -1,8 +1,8 @@
-import IncludeHTML from 'include-html';
+import ImportHTML from 'import-html';
 
 const html = {
   'header.html': '<header></header>',
-  'header-nav.html': '<header><!-- include navigation.html --></header>',
+  'header-nav.html': '<header><!-- import navigation.html --></header>',
   'footer.html': '<footer></footer>',
   'navigation.html': '<nav></nav>',
 };
@@ -21,18 +21,18 @@ const xhrMockClass = () => {
 };
 window.XMLHttpRequest = jest.fn().mockImplementation(xhrMockClass);
 
-describe('IncludeHTML', () => {
+describe('ImportHTML', () => {
   describe('.load', () => {
     test('basic usage', () => {
-      document.body.innerHTML = "<!-- include header.html -->";
-      return IncludeHTML.load().then(() => {
+      document.body.innerHTML = "<!-- import header.html -->";
+      return ImportHTML.load().then(() => {
         expect(document.body.innerHTML).toEqual(html["header.html"]);
       });
     });
     
-    test('include template with nested include', () => {
-      document.body.innerHTML = "<!-- include header-nav.html -->";
-      return IncludeHTML.load().then(() => {
+    test('import template with nested import', () => {
+      document.body.innerHTML = "<!-- import header-nav.html -->";
+      return ImportHTML.load().then(() => {
         expect(document.body.innerHTML).toEqual('<header><nav></nav></header>');
       });
     });

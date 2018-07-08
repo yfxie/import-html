@@ -1,23 +1,23 @@
 {
-  "name": "include-html-js",
+  "name": "import-html.js",
   "version": "1.0.1",
-  "description": "using include feature in HTML",
-  "main": "include-html.js",
+  "description": "using import feature in HTML",
+  "main": "import-html.js",
   "scripts": {
     "test": "jest",
-    "build": "uglifyjs --compress --mangle -o include-html.min.js -- include-html.js",
+    "build": "uglifyjs --compress --mangle -o import-html.min.js -- import-html.js",
     "release": "bash scripts/release.sh"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yfxie/include-html.git"
+    "url": "git+https://github.com/yfxie/import-html.git"
   },
   "author": "YI FENG XIE",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yfxie/include-html/issues"
+    "url": "https://github.com/yfxie/import-html/issues"
   },
-  "homepage": "https://github.com/yfxie/include-html#readme",
+  "homepage": "https://github.com/yfxie/import-html#readme",
   "devDependencies": {
     "babel-jest": "^23.2.0",
     "babel-polyfill": "^6.26.0",

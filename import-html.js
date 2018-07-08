@@ -1,7 +1,7 @@
-var IncludeHTML = function () {
+var ImportHTML = function () {
   'use strict';
 
-  var SYNTAX_REGX = /include(\s+([^\s]+))+/;
+  var SYNTAX_REGX = /import(\s+([^\s]+))+/;
   var ROOT_ELEMENT = document.documentElement;
 
   function MyPromise(fn, prevPromise) {
@@ -98,7 +98,7 @@ var IncludeHTML = function () {
 
   klass.extractOptions = function(node) {
     var options = node.nodeValue
-      .replace(/^\s+include\s+/,'')
+      .replace(/^\s+import\s+/,'')
       .replace(/\s+/g, ' ')
       .split(' ');
     
@@ -128,7 +128,7 @@ var IncludeHTML = function () {
     if (promises.length) {
       return MyPromise.all(promises).then(klass.load);
     } else {
-      document.documentElement.classList.add('include-html-loaded');
+      document.documentElement.classList.add('import-html-loaded');
     }
   }
   
@@ -138,5 +138,5 @@ var IncludeHTML = function () {
 }();
 
 if(typeof module !== 'undefined') {
-	module.exports = IncludeHTML;
+	module.exports = ImportHTML;
 }

@@ -1,10 +1,10 @@
-include-html.js
+import-html.js
 ===
 
-![](https://circleci.com/gh/yfxie/include-html.svg?style=svg)
-![](http://img.badgesize.io/yfxie/include-html/master/include-html.min.js.svg?compression=gzip)
+![](https://circleci.com/gh/yfxie/import-html.svg?style=svg)
+![](http://img.badgesize.io/yfxie/import-html/master/import-html.min.js.svg?compression=gzip)
 
-for frontend beginners who didn't know framework to use the include feature in HTML.
+for frontend beginners who didn't know framework to use the import feature in HTML.
 
 Usage
 ---
@@ -14,7 +14,7 @@ Usage
 <body>
   ...
   <!-- place before the end of body tag is suggested -->
-  <script src="include-html.min.js"></script>
+  <script src="import-html.min.js"></script>
 </body>
 ```
 
@@ -30,12 +30,12 @@ Usage
 </footer>
 ```
 
-3. include the template by using HTML comment with special syntax `<!-- include file.html -->`:
+3. import the template by using HTML comment with special syntax `<!-- import file.html -->`:
 ```
 <body>
-  <!-- include header.html -->
+  <!-- import header.html -->
   Page content
-  <!-- include footer.html -->
+  <!-- import footer.html -->
 </body>
 ```
 
@@ -55,10 +55,10 @@ Usage
 
 Features
 ---
-- **Light-weight**: ![](http://img.badgesize.io/yfxie/include-html/master/include-html.min.js.svg)
-![](http://img.badgesize.io/yfxie/include-html/master/include-html.min.js.svg?compression=gzip)
-- support nested include.
-- when all templates loaded, `include-html-loaded` class will be added to `<html>`.
+- **Light-weight**: ![](http://img.badgesize.io/yfxie/import-html/master/import-html.min.js.svg)
+![](http://img.badgesize.io/yfxie/import-html/master/import-html.min.js.svg?compression=gzip)
+- support nested import.
+- when all templates loaded, `import-html-loaded` class will be added to `<html>`.
 
 Q&A
 ---
