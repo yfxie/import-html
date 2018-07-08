@@ -1,4 +1,4 @@
-import ImportHTML from 'import-html';
+import ImportHTML from 'import-html.js';
 
 const html = {
   'header.html': '<header></header>',
