@@ -5,23 +5,25 @@ import-html.js
 [![npm version](https://badge.fury.io/js/import-html.js.svg)](https://badge.fury.io/js/import-html.js)
 ![](http://img.badgesize.io/yfxie/import-html/master/import-html.min.js.svg?compression=gzip)
 
-for frontend beginners who didn't know framework to use the import feature in HTML.
+在 HTML 內使用 import 的功能。
 
-*Read this in other languages: [English](README.md), [繁體中文](README.zh-tw.md).*
+*其它語言版本: [English](README.md), [繁體中文](README.zh-tw.md).*
 
-Usage
+使用方法
 ---
 
-1. load the script in HTML:
+1. 載入 script:
 ```
 <body>
   ...
-  <!-- place before the end of body tag is suggested -->
+  <!-- 建議方在 </body> 之前 -->
   <script src="import-html.min.js"></script>
 </body>
 ```
 
-2. prepare template HTML:
+2. 準備 HTML 的模版，模版內容不需要 <html>, <body>...等必要標籤，
+建議將這些模版放到獨立的目錄下:
+
 ```
 <header>
   <h1>Awesome Page</h1>
@@ -33,7 +35,7 @@ Usage
 </footer>
 ```
 
-3. import the template by using HTML comment with special syntax `<!-- import file.html -->`:
+3. 在主要頁面使用 HTML 的註解 `<!-- import file.html -->`:
 ```
 <body>
   <!-- import header.html -->
@@ -42,7 +44,7 @@ Usage
 </body>
 ```
 
-4. the page will be:
+4. 瀏覽器運行後，頁面內容將會是:
 ```
 <body>
   <header>
@@ -58,16 +60,16 @@ Usage
 
 Features
 ---
-- **Light-weight**: ![](http://img.badgesize.io/yfxie/import-html/master/import-html.min.js.svg)
+- **輕量**: ![](http://img.badgesize.io/yfxie/import-html/master/import-html.min.js.svg)
 ![](http://img.badgesize.io/yfxie/import-html/master/import-html.min.js.svg?compression=gzip)
-- support nested import.
-- when all templates loaded, `import-html-loaded` class will be added to `<html>`.
-- JS callback by using `ImportHTML.ready(callback)`
+- 支援巢狀載入（模版內可再使用 `<!-- import ... -->`）
+- 模版載入完成後 `import-html-loaded` class 會被加入到 `<html>`.
+- 模版載入完成後可觸發 JS 回呼： `ImportHTML.ready(callback)`
 
 Tips
 ---
-for some situations, you probably encounter flicker issue.
-for that, set opacity to 0 to hide all HTML elements and reset opacity after all templates loaded by using `ImportHTML.ready`:
+某些使用情況，可能會遇到元素跳動的問題，這是因為 import 功能是以非同步執行，你可以用以下這個方法來解決問題：
+在 head 裡加入一段 script，把頁面透明度設為 0，等待所有模版都載入完成後再將透明的設定拿掉：
 
 ```
 <head>
@@ -89,12 +91,6 @@ for that, set opacity to 0 to hide all HTML elements and reset opacity after all
 Q&A
 ---
 
-**Why not use browser native Promise?**
+**為何不使用瀏覽器內建的 Promise?**
 
-to support legacy browsers like IE.
-
-Todo
----
-- [ ] demo page
-- [ ] more detail description
-- [ ] can pass variables
+為了支援老舊瀏覽器
