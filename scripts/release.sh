@@ -16,14 +16,14 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   npm run test
 
   VERSION=$VERSION npm run build
-  npm run add-comment
+  VERSION=$VERSION npm run add-comment
 
   # commit
   git add -A
   git commit -m "build: $VERSION"
   
   # tag version
-  npm version "$VERSION" --message "build: release $VERSION"
+  npm version "$VERSION" --message "release: $VERSION"
 
   # publish
   git push origin refs/tags/v"$VERSION"

@@ -4,7 +4,7 @@ const pkg = require(`${process.cwd()}/package.json`);
 const { name, version, homepage, license, author } = pkg;
 const template = `/*!
 * 
-*   ${name} v${version}
+*   ${name} v${process.env.VERSION || version}
 *   ${homepage}
 * 
 *   (c) ${new Date().getFullYear()} ${author}
