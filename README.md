@@ -60,6 +60,29 @@ Features
 ![](http://img.badgesize.io/yfxie/import-html/master/import-html.min.js.svg?compression=gzip)
 - support nested import.
 - when all templates loaded, `import-html-loaded` class will be added to `<html>`.
+- JS callback by using `ImportHTML.ready(callback)`
+
+Tips
+---
+for some situations, you probably encounter flicker issue.
+for that, set opacity to 0 to hide all HTML elements and reset opacity after all templates loaded by using `ImportHTML.ready`:
+
+```
+<head>
+  <!-- import include/head.html -->
+  <script>document.documentElement.style.opacity = 0;</script>
+</head>
+<body>
+  ...
+  <script src="import-html.min.js"></script>
+  <script>
+    ImportHTML.ready(function() {
+      document.documentElement.style.removeProperty('opacity');
+    });
+  </script>
+</body>
+
+```
 
 Q&A
 ---
@@ -72,7 +95,4 @@ Todo
 ---
 - [ ] demo page
 - [ ] more detail description
-- [ ] JS event: loaded
 - [ ] can pass variables
-- [ ] version control
-- [ ] write test

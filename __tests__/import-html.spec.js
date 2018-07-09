@@ -37,6 +37,20 @@ describe('ImportHTML', () => {
       });
     });
   });
+  describe('.ready', () => {
+    test('execute callback', () => {
+      document.body.innerHTML = "<!-- import header-nav.html -->";
+      ImportHTML.load();
+
+      return new Promise(r => {
+        ImportHTML.ready(() => {
+          document.querySelector('nav').remove();
+          expect(document.body.innerHTML).toEqual('<header></header>');
+          r();
+        });
+      })
+    });
+  });
 });
 
 

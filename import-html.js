@@ -19,7 +19,7 @@ var ImportHTML = function () {
         self.next._run(self.result);
       }
       return self.next;
-    }
+    };
   
     self._run = function(result) {
       var returnValue = self.fn(result);
@@ -28,7 +28,7 @@ var ImportHTML = function () {
       } else {
         self._resolve(returnValue);
       }
-    }
+    };
   
     self._resolve = function(result) {
       self.resolved = true;
@@ -36,12 +36,18 @@ var ImportHTML = function () {
       if (self.next) {
         self.next._run(result);
       }
-    }
+    };
   
     if (!self.prevPromise) {
       self.fn(self._resolve);
     }
   }
+
+  MyPromise.resolve = function() {
+    return new MyPromise(function(resolve) {
+      resolve();
+    });
+  };
 
   MyPromise.all = function(promises) {
     return new MyPromise(function(resolve) {
@@ -58,24 +64,27 @@ var ImportHTML = function () {
         });
       });
     });
-  }
+  };
   
   function request(url) {
     return new MyPromise(function(resolve) {
       var client = new XMLHttpRequest();
       client.onload = function() {
         resolve(this.response);
-      }
+      };
       client.open('get', url, true);
       client.send();
     });
   }
-  
+
+  var loading = true;
+  var callbacks = [];
+
   var klass = function(node) {
     this.node = node;
     this.parentNode = node.parentNode;
     this.options = klass.extractOptions(node);
-  }
+  };
   
   klass.prototype.load = function() {
     var self = this;
@@ -83,10 +92,10 @@ var ImportHTML = function () {
     return request(this.options.url).then(function(html) {
       var tpl = document.createElement('template');
       tpl.innerHTML = html;
-      self.parentNode.replaceChild(tpl.content, self.node);      
+      self.parentNode.replaceChild(tpl.content, self.node);
       return tpl;
     });
-  }
+  };
 
   klass.nodeValidator = function(node) {
     if (SYNTAX_REGX.exec(node.nodeValue)) {
@@ -94,7 +103,7 @@ var ImportHTML = function () {
     } else {
       return NodeFilter.FILTER_REJECT;
     }
-  }
+  };
 
   klass.extractOptions = function(node) {
     var options = node.nodeValue
@@ -108,7 +117,7 @@ var ImportHTML = function () {
       url: url,
       directives: options,
     }
-  }
+  };
 
   klass.queryNodes = function(rootEl) {
     var nextNode, nodes = [];
@@ -117,10 +126,12 @@ var ImportHTML = function () {
       nodes.push(nextNode);
     }
     return nodes;
-  }
+  };
 
   klass.load = function(rootEl) {
+    klass.beforeLoad();
     rootEl = rootEl instanceof HTMLElement ? rootEl : ROOT_ELEMENT;
+
     var promises = klass.queryNodes(rootEl).map(function(node) {  
       return new klass(node).load();
     });
@@ -128,9 +139,31 @@ var ImportHTML = function () {
     if (promises.length) {
       return MyPromise.all(promises).then(klass.load);
     } else {
-      document.documentElement.classList.add('import-html-loaded');
+      return MyPromise.resolve().then(klass.afterLoaded);
     }
-  }
+  };
+
+  klass.beforeLoad = function() {
+    loading = true;
+  };
+
+  klass.afterLoaded = function() {
+    var cb;
+    loading = false;
+
+    document.documentElement.classList.add('import-html-loaded');
+    while(cb = callbacks.shift()) {
+      cb();
+    }
+  };
+
+  klass.ready = function(cb) {
+    if (loading) {
+      callbacks.push(cb);
+    } else {
+      cb();
+    }
+  };
   
   document.addEventListener('DOMContentLoaded', klass.load);
 
